@@ -71,7 +71,7 @@ VisualDeck is a powerful, real-time video mixing and presentation software that 
 
 ### Step 3: Download VisualDeck 📦
 ```bash
-git clone https://github.com/yourusername/visualdeck.git
+git clone https://github.com/michaelchagnon/visualdeck.git
 cd visualdeck
 ```
 
