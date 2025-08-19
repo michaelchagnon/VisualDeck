@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-1.0b-blue.svg" alt="Version">
-  <img src="https://img.shields.io/badge/python-3.7+-green.svg" alt="Python">
+  <img src="https://img.shields.io/badge/python-3.12+-green.svg" alt="Python">
 </p>
 
 ## 🎯 What is VisualDeck?
@@ -13,7 +13,6 @@ VisualDeck is a powerful, real-time video mixing and presentation software that 
 - 🎪 **Live Events** - Theater productions, concerts, and performances
 - 🏢 **Corporate Presentations** - Dynamic multi-screen presentations
 - 🎨 **Art Installations** - Interactive video displays and exhibitions
-- 📺 **Broadcast** - Live video switching and mixing
 - 🎮 **Gaming Events** - Tournament displays and live streaming backgrounds
 - 🏛️ **Museums** - Multi-screen educational displays
 
@@ -42,7 +41,7 @@ VisualDeck is a powerful, real-time video mixing and presentation software that 
 ## 📋 System Requirements
 
 ### Minimum Requirements
-- **OS**: Windows 10/11, macOS 10.14+, Linux (Ubuntu 20.04+)
+- **OS**: Windows 10/11, untested on Linux (Ubuntu 20.04+) but may work
 - **CPU**: Intel i5 or AMD Ryzen 5
 - **RAM**: 8GB
 - **GPU**: DirectX 11 compatible (for GPU acceleration)
@@ -80,10 +79,6 @@ cd visualdeck
 # Windows
 python -m venv venv
 venv\Scripts\activate
-
-# macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
 ```
 
 ### Step 5: Install Dependencies 📚
@@ -139,7 +134,6 @@ python src/app.py
    
    Cue 2: Main Content
    - Layer 1: Presentation slides
-   - Layer 2: Lower third graphics
    ```
 
 2. **Configure Output**
@@ -161,7 +155,7 @@ python src/app.py
 
 1. **Manual Control**
    - Click column headers to jump to cues
-   - Press "GO" button for next cue
+   - Press "GO" button or Spacebar for next cue
    - Monitor preview while performing
 
 2. **Presentation Mode**
@@ -281,18 +275,6 @@ python src/app.py
 
 Contributing guide coming soon! We welcome all contributions to make VisualDeck even better.
 
-### Development Setup
-```bash
-# Clone repository
-git clone https://github.com/michaelchagnon/visualdeck.git
-
-# Install in development mode
-pip install -e .
-
-# Run tests
-python -m pytest tests/
-```
-
 ---
 
 <p align="center">
@@ -300,7 +282,5 @@ python -m pytest tests/
 </p>
 
 <p align="center">
-  <a href="https://github.com/michaelchagnon/visualdeck/issues">Report Bug</a> •
-  <a href="https://github.com/michaelchagnon/visualdeck/discussions">Discussions</a> •
-  <a href="https://visualdeck.org/">Documentation</a>
+  <a href="https://visualdeck.org/">VisualDeck.org</a>
 </p>
