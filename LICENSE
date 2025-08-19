@@ -1,46 +1,35 @@
 Source-Available License, Version 1.0 (SAL-1.0)
 SPDX-License-Identifier: LicenseRef-SAL-1.0
-Copyright © 2025 Michael Chagnon
+Copyright © 2025 The VisualDeck Project
+Licensor: The VisualDeck Project (contact: licensing@visualdeck.org)
+
+By exercising any rights granted by this license, you accept its terms.
 
 0. Purpose
-This license makes the source code of VisualDeck publicly available for use, study, modification, and internal compilation, while reserving (a) rights to distribute compiled binaries and (b) rights to offer the software as a hosted/managed service to third parties. It also includes a "network use" source-availability obligation.
+This license makes the source code of VisualDeck publicly available for use, study, modification, and internal compilation, while reserving (a) rights to distribute compiled binaries and (b) rights to offer the software as a hosted/managed service to third parties. It also includes a “network use” source-availability obligation.
 
 1. Definitions
-"Licensor" means Michael Chagnon, the rights holder(s) for the Work.
-
-"Work" means the original software and associated materials licensed here.
-
-"Source" means the preferred form of the Work for making modifications, including build scripts and interface definitions.
-
-"Compiled Form" or "Binary" means any non-Source form of the Work, including executables, libraries, container images, or packages produced from Source.
-
-"Distribute" means to make a copy available to any third party by any means, including publication, sale, hosting for download, or embedding in a device shipped to third parties.
-
-"Internal Use" means use by a single natural person for personal purposes, or by an organization solely for its employees and contractors acting for that organization, without providing the Work to third parties outside the organization.
-
-"Modified Work" means any work derived from or based on the Work, in whole or part, including by translation, adaptation, or combination.
-
-"External Service" means making the Work or a Modified Work available to third parties as a hosted, managed, or network-based service that exposes any substantial set of its features or functionality, whether or not for a fee.
+“Licensor” means The VisualDeck Project, as identified above.
+“Work” means the original software and associated materials licensed here.
+“Source” means the preferred form of the Work for making modifications, including build scripts and interface definitions.
+“Compiled Form” or “Binary” means any non-Source form of the Work, including executables, libraries, container images, or packages produced from Source.
+“Distribute” means to make a copy available to any third party by any means, including publication, sale, hosting for download, or embedding in a device shipped to third parties.
+“Internal Use” means use by a single natural person for personal purposes, or by an organization solely for its employees and contractors acting for that organization, without providing the Work to third parties outside the organization.
+“Modified Work” means any work derived from or based on the Work, in whole or part, including by translation, adaptation, or combination.
+“External Service” means making the Work or a Modified Work available to third parties as a hosted, managed, or network-based service that exposes any substantial set of its features or functionality, whether or not for a fee.
 
 2. Grant of Rights (Source; Internal Use)
 Subject to the terms below, Licensor grants you a worldwide, royalty-free, non-exclusive license to:
-
-Use, reproduce, and modify the Source for any purpose.
-
-Compile the Source to create Compiled Forms.
-
-Use and deploy Compiled Forms for Internal Use.
-
-Distribute Source, unmodified or modified, under this same license.
+• Use, reproduce, and modify the Source for any purpose.
+• Compile the Source to create Compiled Forms.
+• Use and deploy Compiled Forms for Internal Use.
+• Distribute Source, unmodified or modified, under this same license.
 
 3. Copyleft on Source Distribution
 If you Distribute the Source of the Work (unmodified or modified), you must:
-
-Include a copy of this license and retain applicable notices;
-
-Clearly mark changes and the date of each change; and
-
-License your modifications to the Source under this same license.
+(a) include a copy of this license and retain applicable notices;
+(b) clearly mark changes and the date of each change; and
+(c) license your modifications to the Source under this same license.
 
 4. Network Use Source Offer (AGPL-style Obligation)
 If you modify the Work and make it available for others to interact with remotely over a network, you must provide those remote users with prominent access to the complete, corresponding modified Source for that running version, under this same license, at no charge.
@@ -49,10 +38,8 @@ Clarification. Compliance with this section does not authorize any activity proh
 5. Compiled/Binary Distribution Restriction
 Except as expressly permitted in Section 7 (Official Binaries) or Section 2 (Internal Use), you may not Distribute Compiled Forms of the Work or any portion thereof without a separate, written commercial license from Licensor.
 For clarity:
-
-You may compile for yourself or your organization and use/deploy internally.
-
-You may not publish, sell, host for download, or otherwise provide Compiled Forms to third parties without Licensor's permission.
+• You may compile for yourself or your organization and use/deploy internally.
+• You may not publish, sell, host for download, or otherwise provide Compiled Forms to third parties without Licensor’s permission.
 
 6. External Service Restriction (No Managed/Hosted Service)
 Except for Internal Use, you may not provide the Work or any Modified Work to third parties as an External Service without a separate, written commercial license from Licensor. Offering APIs, web applications, or any network-accessible functionality of the Work to third parties constitutes an External Service.
@@ -61,19 +48,19 @@ Clarifications.
 (b) Compliance with Section 4 (Network Use Source Offer) is required whenever applicable, but does not waive or permit conduct prohibited by this Section 6.
 
 7. Official Binaries; Access Control
-Licensor may publish Official Binaries and may condition access to downloads on payment, registration, or other terms. Official Binaries are provided under a separate end-user license accompanying those binaries. Nothing in this license requires display of notices or a "nag screen." This section does not grant rights to Distribute any Compiled Forms except by Licensor.
+Licensor may publish Official Binaries and may condition access to downloads on payment, registration, or other terms. Official Binaries are provided under a separate end-user license accompanying those binaries. Nothing in this license requires display of notices or a “nag screen.” This section does not grant rights to Distribute any Compiled Forms except by Licensor.
 
 8. Patents
-Licensor grants you a non-exclusive, worldwide, royalty-free patent license under Licensor's essential patent claims that read on the Work, solely for the rights granted in Section 2. This patent license terminates automatically as to any entity that initiates or maintains a patent claim alleging that the Work or a contribution to it infringes a patent.
+Licensor grants you a non-exclusive, worldwide, royalty-free patent license under Licensor’s essential patent claims that read on the Work, solely for the rights granted in Section 2. This patent license terminates automatically as to any entity that initiates or maintains a patent claim alleging that the Work or a contribution to it infringes a patent.
 
 9. Trademarks
-This license does not grant permission to use Licensor's names, logos, or trademarks, except for truthful and non-misleading descriptive use to identify the Work.
+This license does not grant permission to use Licensor’s names, logos, or trademarks, except for truthful and non-misleading descriptive use to identify the Work.
 
 10. No Warranty
-The Work is provided "AS IS" without warranty of any kind, express or implied, including warranties of merchantability, fitness for a particular purpose, and non-infringement.
+THE WORK IS PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
 
 11. Limitation of Liability
-To the maximum extent permitted by law, in no event will Licensor be liable for any claim, damages, or other liability, whether in contract, tort, or otherwise, arising from or in connection with the Work or this license.
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT WILL LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT, OR OTHERWISE, ARISING FROM OR IN CONNECTION WITH THE WORK OR THIS LICENSE.
 
 12. Termination; Cure
 Your rights under this license terminate automatically if you materially breach it. If you cease all violations within 30 days of receiving notice, your license automatically reinstates unless and until Licensor expressly terminates it for repeated violations.
@@ -86,3 +73,5 @@ If any provision of this license is unenforceable, it will be enforced to the ma
 
 15. Entire Agreement; New Versions
 This license is the complete agreement concerning the Source rights granted herein. Licensor may publish new versions of this license; unless you expressly accept a later version, the version you received applies.
+
+END OF TERMS
