@@ -1,0 +1,45 @@
+Official Binary End-User License Agreement (EULA) v1.0
+Software: VisualDeck official compiled binaries
+Licensor: The VisualDeck Project (contact: licensing@yourdomain.example)
+
+IMPORTANT: This EULA is a legal agreement between you and the Licensor for the official compiled binaries of VisualDeck (“Software”). The Source for the Software is licensed separately under the Source-Available License v1.0 (SAL-1.0). By downloading, installing, or using the Software, you agree to be bound by this EULA.
+
+1. License Grant
+Subject to your compliance with this EULA and payment of any applicable fees, the Licensor grants you a non-exclusive, non-transferable license to install and use the Software:
+(a) by a single natural person; or
+(b) within a single legal entity for its employees and contractors,
+solely for your internal business or personal purposes.
+
+2. Restrictions
+You may not:
+(a) redistribute the Software (including installers, packages, or container images) to any third party;
+(b) provide the Software as a hosted, managed, or network-based service to third parties or otherwise make its functionality available to third parties over a network (the “No External Service” restriction);
+(c) sublicense, sell, rent, lease, lend, or otherwise transfer the Software or any rights hereunder;
+(d) reverse engineer, decompile, or disassemble the Software except to the extent such activity is expressly permitted by applicable law notwithstanding this limitation; or
+(e) remove or alter any proprietary notices or labels on the Software.
+
+3. Ownership; Open Source Notice
+The Licensor and its licensors own all right, title, and interest in and to the Software. The Source code for VisualDeck is available under SAL-1.0; this EULA governs only the official compiled binaries. This EULA does not grant any rights to the Source beyond those provided under SAL-1.0.
+
+4. Accounts, Delivery, and Updates
+Access to downloads may require registration and payment. Delivery may occur via account portal or direct download link. The Licensor may from time to time provide updates or patches; such updates are deemed part of the Software and subject to this EULA. The Licensor has no obligation to provide updates or support unless expressly agreed.
+
+5. Term and Termination
+This EULA remains in effect until terminated. The Licensor may terminate this EULA immediately upon notice if you materially breach it. Upon termination, you must cease use of the Software and destroy all copies. Sections 2, 3, 6, and 7 survive termination.
+
+6. No Warranty
+THE SOFTWARE IS PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+7. Limitation of Liability
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE LICENSOR SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR EXEMPLARY DAMAGES, OR FOR LOSS OF PROFITS, REVENUES, DATA, OR USE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. THE LICENSOR’S AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THIS EULA SHALL NOT EXCEED THE AMOUNT YOU PAID (IF ANY) FOR THE SOFTWARE IN THE 12 MONTHS PRECEDING THE CLAIM.
+
+8. Export and Sanctions Compliance
+You represent that you are not located in, under the control of, or a national or resident of any country or party subject to U.S. or other applicable export or sanctions restrictions. You agree to comply with all applicable export control and sanctions laws.
+
+9. Governing Law; Venue
+This EULA is governed by the laws of the State of New York, USA, excluding its conflicts of law rules. The state and federal courts located in New York, New York shall have exclusive jurisdiction over disputes arising out of or in connection with this EULA.
+
+10. Entire Agreement; Order of Precedence
+This EULA constitutes the entire agreement between the parties with respect to the Software. In the event of conflict between this EULA and SAL-1.0 with respect to the binaries, this EULA controls; SAL-1.0 continues to govern the Source.
+
+END OF EULA
