@@ -1,0 +1,16 @@
+# =====================================================================
+# requirements.txt
+# =====================================================================
+
+opencv-python==4.12.0.88
+pygame==2.6.1
+python-rtmidi==1.5.8
+watchdog==6.0.0
+python-osc==1.9.3
+av==15.0.0
+numpy==2.1.2
+Pillow==11.3.0
+screeninfo==0.8.1
+PyOpenGL==3.1.9
+PyOpenGL-accelerate==3.1.9
+pywin32==306 ; sys_platform == 'win32'
