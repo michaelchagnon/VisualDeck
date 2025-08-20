@@ -5,8 +5,9 @@
   <img src="https://img.shields.io/badge/python-3.12+-green.svg" alt="Python">
 </p>
 
-<p>
-  <img src="https://visualdeck.org/visualdeck.png" alt="Visual Deck">
+<p align="center">
+  <img src="https://visualdeck.org/visualdeck.png" alt="Visual Deck"><br>
+  <img src="https://visualdeck.org/bitcoin.png" alt="Donate Bitcoin: bc1qv6aw43faucxyvne7z4hr7yystxu8vu5sf5fc3m">
 </p>
 
 ## 🎯 What is VisualDeck?
