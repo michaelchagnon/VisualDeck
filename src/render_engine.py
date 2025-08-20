@@ -937,17 +937,42 @@ class OpenGLRenderEngine(BaseRenderEngine):
         self.use_instancing = use_instancing  # Use the passed parameter
 
     def _init_pygame_and_gl(self):
+        import os, sys, pygame
         pygame.init()
         pygame.display.init()
-        
+
+        # Ensure the output window uses the same icon as the main GUI (.ico file)
+        try:
+            from PIL import Image
+            base_dir = getattr(sys, "_MEIPASS", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            ico_path = os.path.join(base_dir, 'src', 'visualdeck.ico')
+            if os.path.exists(ico_path):
+                im = Image.open(ico_path)
+                # Pick largest frame in the .ico for best fidelity
+                if getattr(im, "n_frames", 1) > 1:
+                    best = None; best_area = -1
+                    for i in range(im.n_frames):
+                        im.seek(i)
+                        area = im.size[0] * im.size[1]
+                        if area > best_area:
+                            best = im.copy()
+                            best_area = area
+                    im = best
+                if im.mode != "RGBA":
+                    im = im.convert("RGBA")
+                surf = pygame.image.frombuffer(im.tobytes(), im.size, "RGBA")
+                pygame.display.set_icon(surf)
+        except Exception:
+            # Best-effort; never fail initialization over an icon
+            pass
+
         if sys.platform == "win32":
             pygame.display.gl_set_attribute(pygame.GL_ACCELERATED_VISUAL, 1)
-        
+
         pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MAJOR_VERSION, 3)
         pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MINOR_VERSION, 3)
         pygame.display.gl_set_attribute(pygame.GL_CONTEXT_PROFILE_MASK, pygame.GL_CONTEXT_PROFILE_CORE)
-        
-        # MODIFICATION: Use the vsync setting
+
         vsync_val = 1 if self.use_vsync else 0
         pygame.display.gl_set_attribute(pygame.GL_SWAP_CONTROL, vsync_val)
 
@@ -2095,8 +2120,35 @@ class PygameRenderEngine(BaseRenderEngine):
         self.cache_misses = 0  # For debugging
 
     def _init_pygame_and_gl(self):
+        import os, sys, pygame
         pygame.init()
         pygame.display.init()
+
+        # Ensure the output window uses the same icon as the main GUI (.ico file)
+        try:
+            from PIL import Image
+            base_dir = getattr(sys, "_MEIPASS", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            ico_path = os.path.join(base_dir, 'src', 'visualdeck.ico')
+            if os.path.exists(ico_path):
+                im = Image.open(ico_path)
+                # Pick largest frame in the .ico for best fidelity
+                if getattr(im, "n_frames", 1) > 1:
+                    best = None; best_area = -1
+                    for i in range(im.n_frames):
+                        im.seek(i)
+                        area = im.size[0] * im.size[1]
+                        if area > best_area:
+                            best = im.copy()
+                            best_area = area
+                    im = best
+                if im.mode != "RGBA":
+                    im = im.convert("RGBA")
+                surf = pygame.image.frombuffer(im.tobytes(), im.size, "RGBA")
+                pygame.display.set_icon(surf)
+        except Exception:
+            # Best-effort; never fail initialization over an icon
+            pass
+
 
     def pre_render_static_cue(self, layers, dims):
         """Pre-render a static cue to a surface."""
