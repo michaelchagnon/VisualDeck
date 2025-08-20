@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  <img src="https://visualdeck.org/visualdeck.png" alt="Visual Deck" style="max-width: 200px;">
+  <img src="https://visualdeck.org/visualdeck.png" alt="Visual Deck">
 </p>
 
 ## 🎯 What is VisualDeck?
