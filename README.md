@@ -1,11 +1,12 @@
-<p align="center">
-  <img src="https://visualdeck.org/visualdeck.png" alt="Visual Deck" style="max-width: 50%;">
-</p>
 # 🎬 VisualDeck - High-Performance Python VJ Engine
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-1.0b-blue.svg" alt="Version">
   <img src="https://img.shields.io/badge/python-3.12+-green.svg" alt="Python">
+</p>
+
+<p>
+  <img src="https://visualdeck.org/visualdeck.png" alt="Visual Deck" style="max-width: 200px;">
 </p>
 
 ## 🎯 What is VisualDeck?
