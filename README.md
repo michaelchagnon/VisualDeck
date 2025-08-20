@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="https://visualdeck.org/visualdeck.png" alt="Visual Deck" style="max-width: 50%;">
+</p>
 # 🎬 VisualDeck - High-Performance Python VJ Engine
 
 <p align="center">
