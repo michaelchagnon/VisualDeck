@@ -6,8 +6,9 @@
 </p>
 
 <p align="center">
-  <img src="https://visualdeck.org/visualdeck.png" alt="Visual Deck"><br>
-  <img src="https://visualdeck.org/bitcoin.png" alt="Donate Bitcoin: bc1qv6aw43faucxyvne7z4hr7yystxu8vu5sf5fc3m">
+  <img src="https://visualdeck.org/visualdeck.png" alt="Visual Deck"><br><br>
+  <img src="https://visualdeck.org/bitcoin.png" alt="Donate Bitcoin: bc1qv6aw43faucxyvne7z4hr7yystxu8vu5sf5fc3m"><br>
+  Donate Bitcoin: bc1qv6aw43faucxyvne7z4hr7yystxu8vu5sf5fc3m
 </p>
 
 ## 🎯 What is VisualDeck?
