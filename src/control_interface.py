@@ -1182,7 +1182,8 @@ class ControlInterface:
         self._apply_windows_optimizations()
 
         # Set application icon
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        # CHANGED: resolve base_dir via sys._MEIPASS when bundled
+        base_dir = getattr(sys, "_MEIPASS", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         icon_path = os.path.join(base_dir, 'src', 'visualdeck.ico')
         if os.path.exists(icon_path):
             try:
@@ -1202,6 +1203,12 @@ class ControlInterface:
                 self._splash_win.overrideredirect(True)
                 try:
                     self._splash_win.attributes('-topmost', True)
+                except Exception:
+                    pass
+                # NEW: give splash the same icon (taskbar/tray consistency)
+                try:
+                    if os.path.exists(icon_path):
+                        self._splash_win.iconbitmap(icon_path)
                 except Exception:
                     pass
 
