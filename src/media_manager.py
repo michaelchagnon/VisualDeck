@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 # =====================================================================
 # src/media_manager.py
 # =====================================================================
@@ -7,6 +8,8 @@ import time
 import logging
 import av
 from functools import lru_cache
+
+log = logging.getLogger("visualdeck.media")
 
 class MediaManager:
     """A lightweight class to get media information using a cache."""
@@ -26,7 +29,7 @@ class MediaManager:
             ext = os.path.splitext(path)[1].lower()
             duration, w, h = 0, 0, 0
             
-            if ext in ['.mp4', '.avi', '.mov', '.mkv']:
+            if ext in ['.mp4', '.avi', '.mov', '.mkv', '.webm', '.m4v', '.mpg', '.mpeg', '.ts', '.wmv', '.flv']:
                 # --- THIS IS THE REWRITTEN LOGIC ---
                 container = None
                 try:
@@ -52,5 +55,5 @@ class MediaManager:
             return size, duration, w, h
 
         except Exception as e:
-            logging.warning(f"Could not get media info for {path}: {e}")
+            log.warning(f"Could not get media info for {path}: {e}")
             return 0, 0, 0, 0 # Failed to open or read

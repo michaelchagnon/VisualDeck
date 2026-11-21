@@ -1,11 +1,28 @@
+# SPDX-License-Identifier: MPL-2.0
 # =====================================================================
 # src/app.py
 # =====================================================================
 import os
 import sys
+
+# Modes for the Windows build, which has no Python to run scripts with, before
+# the app's heavy imports: Find Best Setting For Me starts the program with
+# --benchmark <mode> (benchmark.py), and the build is checked with
+# --self-test [report.json] (selftest.py).
+if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] in ('--benchmark', '--self-test'):
+    if sys.argv[1] == '--benchmark':
+        import benchmark
+        print(benchmark.run(sys.argv[2] if len(sys.argv) > 2 else None), flush=True)
+        sys.exit(0)
+    import selftest
+    sys.exit(selftest.run(sys.argv[2] if len(sys.argv) > 2 else None))
+
 import logging
 import platform
-from logging.handlers import RotatingFileHandler
+import json
+import logging_setup
+
+log = logging.getLogger("visualdeck.app")
 from media_manager import MediaManager
 from control_interface import ControlInterface
 
@@ -13,25 +30,7 @@ def setup_logging():
     """Configures the logging for the entire application."""
     import threading
 
-    log_dir = os.path.join(os.path.expanduser('~'), '.visualdeck')
-    os.makedirs(log_dir, exist_ok=True)
-    log_file = os.path.join(log_dir, 'app.log')
-
-    # Configure the root logger
-    logger = logging.getLogger()
-    logger.setLevel(logging.INFO)  # Set the lowest level to capture
-
-    # Create a rotating file handler (5 files, 5MB each)
-    handler = RotatingFileHandler(log_file, maxBytes=5*1024*1024, backupCount=5)
-
-    # Create a formatter
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    handler.setFormatter(formatter)
-
-    # Avoid duplicate handlers if setup_logging is called twice
-    if not any(isinstance(h, RotatingFileHandler) and getattr(h, 'baseFilename', None) == handler.baseFilename
-               for h in logger.handlers):
-        logger.addHandler(handler)
+    log_file = logging_setup.configure()
 
     # --- Crash UI helper (best-effort; fully guarded) ---
     def _show_crash_dialog(exc_text: str):
@@ -89,7 +88,7 @@ def setup_logging():
         info = f"{ver_line}\n{sys_line}\n\n{trace_text}"
 
         # Log full traceback to file
-        logging.critical("Uncaught exception:", exc_info=(exc_type, exc_value, exc_traceback))
+        log.critical("Uncaught exception:", exc_info=(exc_type, exc_value, exc_traceback))
 
         # Best-effort crash dialog + clipboard
         _show_crash_dialog(info)
@@ -106,11 +105,46 @@ def setup_logging():
         pass
 
 def main():
+    tz_note = logging_setup.fix_windows_tz()   # before the first log line, so its time is right
     setup_logging()
-    logging.info("=====================================================")
-    logging.info("           VisualDeck Application Starting Up        ")
-    logging.info("=====================================================")
+    log.info("=====================================================")
+    log.info("           VisualDeck Application Starting Up        ")
+    log.info("=====================================================")
+    try:
+        from control_interface import SPLASH_VERSION_TEXT as _ver
+    except Exception:  # noqa: BLE001
+        _ver = "?"
+    try:
+        env = logging_setup.environment_report()
+        log.info("Session: VisualDeck %s | %s", _ver, json.dumps(env, ensure_ascii=True),
+                     extra={'data': {'session': env}})
+    except Exception:  # noqa: BLE001 - diagnostics must never stop start-up
+        log.exception("Could not write the session header")
+    if tz_note:
+        log.info(f"Time zone: {tz_note}")
+    try:
+        fault_path, crash = logging_setup.enable_crash_report()
+        if crash:
+            log.error("The previous session ended with a crash outside Python (a native crash). "
+                      f"Where each thread was at that moment ({fault_path}):\n{crash[:6000]}")
+    except Exception:  # noqa: BLE001 - diagnostics must never stop start-up
+        log.exception("Could not start the crash report")
+    # Experiment (performance budget): how long a thread may keep
+    # Python's lock before another waiting thread (the render thread) gets it.
+    # Python's default is 5 ms; set VISUALDECK_SWITCH_INTERVAL_MS to try others.
+    _si = os.environ.get("VISUALDECK_SWITCH_INTERVAL_MS")
+    if _si:
+        try:
+            sys.setswitchinterval(max(0.0005, float(_si) / 1000.0))
+            log.info(f"Python switch interval set to {sys.getswitchinterval() * 1000:.1f} ms (VISUALDECK_SWITCH_INTERVAL_MS)")
+        except (ValueError, TypeError):
+            log.warning(f"Ignoring VISUALDECK_SWITCH_INTERVAL_MS={_si!r}")
     
+    # A show machine must not sleep or blank its screens while VisualDeck is open
+    # (Windows; no setting is changed, the request ends with the program).
+    import keep_awake
+    keep_awake.hold()
+
     # ADD THIS - Track if we need Windows cleanup
     windows_cleanup_needed = False
     
@@ -118,7 +152,7 @@ def main():
         # ADD THIS - Windows detection
         if sys.platform == "win32":
             windows_cleanup_needed = True
-            logging.info(f"Running on Windows {platform.version()}")
+            log.info(f"Running on Windows {platform.version()}")
         
         # MediaManager is now a lightweight class that doesn't manage a central folder.
         # It's primarily used for getting media info.
@@ -128,17 +162,19 @@ def main():
         # within the ControlInterface.
         ControlInterface(media_manager)
         
-        logging.info("Application shutting down normally.")
+        log.info("Application shutting down normally.")
+        logging_setup.mark_clean_exit()
     except Exception:
-        logging.critical("A fatal error occurred in the main application loop.", exc_info=True)
+        log.critical("A fatal error occurred in the main application loop.", exc_info=True)
     finally:
+        keep_awake.release()
         # ADD THIS - Windows cleanup
         if windows_cleanup_needed and sys.platform == "win32":
             try:
                 import ctypes
                 winmm = ctypes.WinDLL('winmm')
                 winmm.timeEndPeriod(1)  # Reset timer resolution
-                logging.info("Reset Windows timer resolution")
+                log.info("Reset Windows timer resolution")
             except:
                 pass
 

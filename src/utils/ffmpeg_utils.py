@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 # =====================================================================
 # src/utils/ffmpeg_utils.py
 # =====================================================================
@@ -12,6 +13,8 @@ import json
 import hashlib
 import logging
 
+log = logging.getLogger("visualdeck.ffmpeg")
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 FFMPEG_DIR = os.path.join(BASE_DIR, '..', 'ffmpeg', 'bin')
 CONFIG_DIR = os.path.join(os.path.expanduser('~'), '.visualdeck')
@@ -22,6 +25,23 @@ if sys.platform == "win32":
 else:
     FFPROBE_PATH = os.path.join(FFMPEG_DIR, 'ffprobe')
     FFMPEG_PATH = os.path.join(FFMPEG_DIR, 'ffmpeg')
+
+
+_missing_reported = False
+
+
+def ffmpeg_available():
+    """True if the bundled FFmpeg exists. When it does not, say so once (at
+    INFO: proxies only speed up thumbnails, nothing is broken) instead of an
+    ERROR line per video at every start (F24)."""
+    global _missing_reported
+    if os.path.exists(FFMPEG_PATH):
+        return True
+    if not _missing_reported:
+        _missing_reported = True
+        log.info(f"FFmpeg not found at {os.path.normpath(FFMPEG_PATH)}: thumbnail proxies are off "
+                 f"(thumbnails are made from the media itself)")
+    return False
 
 
 class FFMpegProxyGenerator:
@@ -44,8 +64,7 @@ class FFMpegProxyGenerator:
 
     def _run_ffmpeg(self):
         """Executes the FFmpeg command."""
-        if not os.path.exists(FFMPEG_PATH):
-            logging.error(f"FFmpeg not found at {FFMPEG_PATH}. Cannot generate proxy.")
+        if not ffmpeg_available():
             return
 
         command = [
@@ -60,15 +79,15 @@ class FFMpegProxyGenerator:
         try:
             creation_flags = subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0
             subprocess.run(command, check=True, capture_output=True, creationflags=creation_flags)
-            logging.info(f"Successfully generated proxy for {os.path.basename(self.file_path)}")
+            log.info(f"Successfully generated proxy for {os.path.basename(self.file_path)}")
         except (subprocess.CalledProcessError, FileNotFoundError) as e:
-            logging.error(f"Error generating proxy for {os.path.basename(self.file_path)}: {e}")
+            log.error(f"Error generating proxy for {os.path.basename(self.file_path)}: {e}")
             if os.path.exists(self.output_path):
                 os.remove(self.output_path)
 
     def generate(self):
         """Generates the proxy if it doesn't already exist."""
-        if os.path.exists(self.output_path):
+        if os.path.exists(self.output_path) or not ffmpeg_available():
             return
 
         os.makedirs(self.proxy_dir, exist_ok=True)
@@ -92,7 +111,7 @@ class FFMpegOptimizer:
             result = subprocess.run(cmd, capture_output=True, text=True, check=True)
             return float(result.stdout.strip())
         except (subprocess.CalledProcessError, ValueError) as e:
-            logging.warning(f"Could not get video duration: {e}")
+            log.warning(f"Could not get video duration: {e}")
             return None
 
     def show(self):

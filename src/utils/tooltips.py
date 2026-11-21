@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 # =====================================================================
 # src/utils/tooltips.py
 # =====================================================================
@@ -38,10 +39,14 @@ class CreateToolTip(object):
         self.tw = tk.Toplevel(self.widget)
         self.tw.wm_overrideredirect(True)
         self.tw.wm_geometry(f"+{x}+{y}")
-        label = tk.Label(self.tw, text=self.text, justify='left',
-                       background="#ffffff", relief='solid', borderwidth=1,
-                       wraplength = 250)
-        label.pack(ipadx=1)
+        try:
+            import ui_theme as T
+            colors = dict(background=T.SURFACE, foreground=T.TEXT, highlightbackground=T.BORDER)
+        except Exception:  # noqa: BLE001
+            colors = dict(background="#ffffff")
+        label = tk.Label(self.tw, text=self.text, justify='left', relief='flat', borderwidth=0,
+                         highlightthickness=1, padx=8, pady=5, wraplength=280, font='TkTooltipFont', **colors)
+        label.pack()
 
     def hidetip(self):
         tw = self.tw

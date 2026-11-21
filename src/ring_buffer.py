@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 # =====================================================================
 # src/ring_buffer.py
 # =====================================================================
@@ -30,6 +31,10 @@ class FastRingBuffer:
         self.read_idx = 0
         self.write_idx = 0
         self.count = 0
+        # Health counters: frames handed to the consumer, and frames replaced
+        # by a newer one before the consumer took them.
+        self.taken = 0
+        self.dropped = 0
         
     def put(self, item, timeout=None):
         """Put an item into the buffer."""
@@ -78,6 +83,7 @@ class FastRingBuffer:
                 # Skip read pointer ahead to drop oldest frame
                 self.read_idx = (self.read_idx + 1) % self.maxsize
                 self.count -= 1
+                self.dropped += 1
             
             if self.is_preallocated and isinstance(item, np.ndarray):
                 np.copyto(self.buffer[self.write_idx], item)
@@ -130,6 +136,7 @@ class FastRingBuffer:
                 
             self.read_idx = (self.read_idx + 1) % self.maxsize
             self.count -= 1
+            self.taken += 1
             self.not_full.notify()
             return result
     
@@ -159,6 +166,7 @@ class FastRingBuffer:
                 skip_count = self.count - 1
                 self.read_idx = (self.read_idx + skip_count) % self.maxsize
                 self.count = 1
+                self.dropped += skip_count
             
             item = self.buffer[self.read_idx]
             if self.is_preallocated:
@@ -169,6 +177,7 @@ class FastRingBuffer:
                 
             self.read_idx = (self.read_idx + 1) % self.maxsize
             self.count = 0
+            self.taken += 1
             self.not_full.notify()
             return result
 

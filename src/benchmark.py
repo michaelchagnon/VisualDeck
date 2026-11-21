@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 # =====================================================================
 # src/benchmark.py
 # =====================================================================
@@ -156,14 +157,27 @@ def benchmark_pygame():
             pygame.quit()
         return float('inf')
 
+def run(mode):
+    """Seconds for the mode's 100-frame test ('opengl' or 'pygame_gpu'), inf on failure."""
+    if mode == 'opengl':
+        return benchmark_opengl()
+    if mode == 'pygame_gpu':
+        return benchmark_pygame()
+    return float('inf')
+
+
+def command(mode):
+    """The command line Find Best Setting For Me starts for one mode: this
+    script with the same Python, or, in the Windows build (PyInstaller), the
+    program itself with --benchmark (app.py), since there is no Python to run
+    a script with."""
+    if getattr(sys, 'frozen', False):
+        return [sys.executable, '--benchmark', mode]
+    return [sys.executable, os.path.abspath(__file__), mode]
+
+
 if __name__ == "__main__":
     # This block runs when the script is executed directly
     mode = sys.argv[1] if len(sys.argv) > 1 else None
-    result = float('inf')
-    if mode == 'opengl':
-        result = benchmark_opengl()
-    elif mode == 'pygame_gpu':
-        result = benchmark_pygame()
-    
     # Print the final time so the main app can read it
-    print(result)
+    print(run(mode))

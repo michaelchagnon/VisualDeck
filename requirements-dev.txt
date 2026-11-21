@@ -1,0 +1,3 @@
+# Test and benchmark tooling (not needed to run VisualDeck)
+-r requirements.txt
+pytest==8.4.2
