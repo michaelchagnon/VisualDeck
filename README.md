@@ -1,3 +1,5 @@
+> **Archived version.** This is the source of VisualDeck 1.0b (August 2025), kept for reference and now licensed under the [Mozilla Public License 2.0](LICENSE). The current release is on the [main branch](https://github.com/michaelchagnon/VisualDeck) and in [Releases](https://github.com/michaelchagnon/VisualDeck/releases/latest).
+
 # 🎬 VisualDeck - High-Performance Python VJ Engine
 
 <p align="center">
