@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+{% if noindex %}<meta name="robots" content="noindex">
+{% else %}<link rel="canonical" href="{{ site }}{{ path }}">
+{% endif %}
+<meta property="og:type" content="{{ og_type or 'website' }}">
+<meta property="og:site_name" content="VisualDeck">
+<meta property="og:title" content="{{ og_title or title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ site }}{{ path }}">
+<meta property="og:image" content="{{ site }}/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="VisualDeck's main window with a show of video cues, next to the words: Video cues for live shows, on Windows.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v={{ css_version }}">
+{% for block in jsonld %}<script type="application/ld+json">{{ block | safe }}</script>
+{% endfor %}</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="/"><img src="/assets/icon-64.png" width="28" height="28" alt="">VisualDeck</a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/docs/"{% if section == 'docs' %} aria-current="page"{% endif %}>Docs</a></li>
+        <li><a href="/download/"{% if section == 'download' %} aria-current="page"{% endif %}>Download</a></li>
+        <li><a href="{{ github }}">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <h2>VisualDeck</h2>
+      <p>Free video playback, projection mapping and show control for Windows. Open source under the <a href="{{ github }}/blob/main/LICENSE">Mozilla Public License 2.0</a>.</p>
+      <p class="small muted">Version {{ release.label }}, released {{ release.date_text }}.</p>
+    </div>
+    <div>
+      <h2>Documentation</h2>
+      <ul>
+        <li><a href="/docs/quick-start/">Quick start</a></li>
+        <li><a href="/docs/">All topics</a></li>
+        <li><a href="/docs/keyboard-shortcuts/">Keyboard shortcuts</a></li>
+        <li><a href="/docs/remote-control-reference/">Remote control reference</a></li>
+        <li><a href="/docs/known-issues/">Known issues</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Project</h2>
+      <ul>
+        <li><a href="/download/">Download</a></li>
+        <li><a href="/docs/changelog/">Changelog</a></li>
+        <li><a href="{{ github }}">Source code</a></li>
+        <li><a href="{{ github }}/issues">Report a problem</a></li>
+        <li><a href="/#support">Support the project</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

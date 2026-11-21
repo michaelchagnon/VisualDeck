@@ -4,3 +4,6 @@ __pycache__/
 .pytest_cache/
 vd_temp/
 bench/results/*.tmp
+
+# website build output
+website/_site/

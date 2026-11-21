@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="https://visualdeck.org/visualdeck.png" alt="VisualDeck, cue-based video playback software">
+  <img src="docs/images/main-window.png" alt="VisualDeck's main window: the media list, a grid of video cues across four layers, and the preview of the live cue above the GO button">
 </p>
 
 **VisualDeck** is free, open-source software for playing video, images, cameras and live streams on projectors and screens, cue by cue. Build your show as a grid of cues and layers, then press **GO**. It's made for theater, live events, installations and VJ sets. Projection mapping, multi-screen output and remote control by OSC, MIDI, timecode and DMX are all built in.
@@ -69,7 +69,16 @@ One installer with everything included: no Python, codecs or FFmpeg to install s
 ### Built for reliable shows
 - **Output Health** shows frame rate, late frames, decoders and sound, with plain-language warnings, and watches for frozen video.
 - **Autosave and crash recovery**, **missing-media relinking**, and **Collect Show** to package a show with its media.
-- A built-in **Soak Test**. VisualDeck 1.0 passed a **72-hour unattended test** with no errors.
+- A built-in **Soak Test**. A VisualDeck 1.0 release candidate ran a **72-hour unattended test** with no render errors.
+
+## Screenshots
+
+| | |
+|---|---|
+| <img src="docs/images/position-editor.png" alt="The position editor with a Kaleidoscope shader effect on an image"> | <img src="docs/images/corner-pin-output.png" alt="The corner pin window in front of a keystoned grid test pattern on the output"> |
+| The position editor, with a real-time shader effect | Corner pin with the grid test pattern on the output |
+| <img src="docs/images/output-health.png" alt="The Output Health window showing 60 frames a second, no errors and the decoders of three videos"> | <img src="docs/images/browser-remote.png" alt="The browser remote on a phone with GO, BACK, Blackout and the cue list" width="260"> |
+| Output Health during a show | The browser remote on a phone |
 
 ## Install
 
@@ -89,7 +98,7 @@ To uninstall, use Settings › Apps, or Start › VisualDeck › Uninstall Visua
 4. Press **GO** (Space) to play the next cue, or click a cue's header to jump to it.
 5. **File › Save** (Ctrl+S). Before a show, run **Show › Preshow Check…**.
 
-Press **F1** in the app for the full help, which is also in the [user guide](docs/USER_GUIDE.md).
+Press **F1** in the app for the full help, which is also in the [user guide](docs/USER_GUIDE.md) and on [visualdeck.org](https://visualdeck.org/docs/).
 
 ## FAQ
 
@@ -107,6 +116,7 @@ Press **F1** in the app for the full help, which is also in the [user guide](doc
 
 ## Documentation
 
+- [Documentation on visualdeck.org](https://visualdeck.org/docs/): the user guide, one topic per page
 - [User guide](docs/USER_GUIDE.md): every window and menu, with a quick start for show operators
 - [Remote control reference](docs/REMOTE_CONTROL.md): OSC, HTTP, MIDI and DMX commands
 - [Known issues](docs/KNOWN_ISSUES.md) and [changelog](CHANGELOG.md)

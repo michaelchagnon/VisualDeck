@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="wrap page-top measure">
+  <p class="slate"><span>404</span></p>
+  <h1>That cue isn't in the show.</h1>
+  <p class="lead">The page you asked for doesn't exist, or it moved when the site was rebuilt for VisualDeck {{ release.label }}.</p>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/docs/">Documentation</a></li>
+    <li><a href="/download/">Download VisualDeck</a></li>
+  </ul>
+</div>
+{% endblock %}

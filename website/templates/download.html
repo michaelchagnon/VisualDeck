@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="wrap page-top">
+  <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Download</li></ol></nav>
+  <h1>Download VisualDeck {{ release.label }} for Windows</h1>
+  <p class="lead">Free and open source. One installer with everything included: no Python, codecs or FFmpeg to install separately.</p>
+  <p><a class="btn-go" href="{{ release.download_url }}">{{ download_icon | safe }}Download {{ release.filename }}</a>
+  <span class="btn-note">{{ release.size_text }} · Windows 10 and 11, 64-bit · released {{ release.date_text }}</span></p>
+
+  <section class="cue" aria-labelledby="install-h">
+    <div class="cue-mark" aria-hidden="true"><span class="q">Install</span></div>
+    <div class="cue-side"><p>No administrator rights needed.</p></div>
+    <div class="cue-body measure">
+      <h2 id="install-h">Install</h2>
+      <ol class="steps">
+        <li>Download <strong>{{ release.filename }}</strong> with the button above. It comes from the VisualDeck release on GitHub.</li>
+        <li>Run it. It installs for your Windows user only and adds a Start menu entry, a desktop shortcut and an uninstaller. At the end it offers to start VisualDeck.</li>
+        <li>If Windows SmartScreen says it protected your PC from an unrecognized app, choose <strong>More info</strong>, then <strong>Run anyway</strong>. The installer isn't code-signed yet; the checksum below is how to make sure the file is the one published here.</li>
+      </ol>
+      <p>Then follow <a href="/docs/getting-started/">Getting started</a>, or the <a href="/docs/quick-start/">quick start</a> if you're running a show someone else built.</p>
+      <h3>Uninstall</h3>
+      <p>Use Windows Settings › Apps, or Start › VisualDeck › Uninstall VisualDeck. Your shows and settings are kept.</p>
+    </div>
+  </section>
+
+  <section class="cue" aria-labelledby="verify-h">
+    <div class="cue-mark" aria-hidden="true"><span class="q">Verify</span></div>
+    <div class="cue-side"></div>
+    <div class="cue-body measure">
+      <h2 id="verify-h">Check the download</h2>
+      <p>The SHA-256 checksum of {{ release.filename }} is:</p>
+      <p class="hash">{{ release.sha256 }}</p>
+      <p>To compare it, open PowerShell in your Downloads folder and run:</p>
+      <pre><code>Get-FileHash .\{{ release.filename }} -Algorithm SHA256</code></pre>
+      <p>The file is {{ release.size_bytes_text }} bytes.</p>
+    </div>
+  </section>
+
+  <section class="cue" aria-labelledby="req-h">
+    <div class="cue-mark" aria-hidden="true"><span class="q">System</span></div>
+    <div class="cue-side"><p>Tested on Windows 11.</p></div>
+    <div class="cue-body">
+      <h2 id="req-h">System requirements</h2>
+      <div class="table-scroll">
+      <table>
+        <tbody>
+          <tr><th scope="row">Windows</th><td>Windows 10 or 11, 64-bit. Tested on Windows 11.</td></tr>
+          <tr><th scope="row">Graphics</th><td>Performance Mode, the fastest and the one effects and blend modes need, uses a graphics card or integrated GPU with OpenGL 3.3. Balanced and Compatibility Mode work without one.</td></tr>
+          <tr><th scope="row">Memory</th><td>8 GB recommended.</td></tr>
+          <tr><th scope="row">Displays</th><td>One for the control window, and one for each projector or screen the audience sees.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="cue" aria-labelledby="other-h">
+    <div class="cue-mark" aria-hidden="true"><span class="q">Source</span></div>
+    <div class="cue-side"></div>
+    <div class="cue-body measure">
+      <h2 id="other-h">Source code and older versions</h2>
+      <ul>
+        <li><a href="{{ github }}">Source code on GitHub</a>, under the Mozilla Public License 2.0. To run it from source, see <a href="{{ github }}/blob/main/docs/BUILD.md">BUILD.md</a>.</li>
+        <li><a href="{{ github }}/releases/tag/v1.0.0">Release notes for {{ release.label }}</a> and the <a href="/docs/changelog/">changelog</a>.</li>
+        <li><a href="/docs/known-issues/">Known issues and limitations</a> of {{ release.label }}.</li>
+        <li>The original beta, VisualDeck 1.0b (August 2025): <a href="/download/VisualDeck%20v1.0b.zip">VisualDeck v1.0b.zip</a>, with its source on the <a href="{{ github }}/tree/archive/1.0b"><code>archive/1.0b</code></a> branch. It's kept for reference; use {{ release.label }} for new shows.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+{% endblock %}

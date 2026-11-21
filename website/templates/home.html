@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="wrap hero">
+  <div class="hero-grid">
+    <div>
+      <p class="slate"><span>VisualDeck {{ release.label }}</span><span>Free and open source</span><span>Windows</span></p>
+      <h1>Video cues for live shows, on Windows.</h1>
+      <p class="lead">VisualDeck is free, open-source software that plays video, images and live cameras on projectors and screens, cue by cue. Build the show as a grid of cues and layers, choose which screen each layer goes to, and press GO.</p>
+      <div class="actions">
+        <div>
+          <a class="btn-go" href="{{ release.download_url }}">{{ download_icon | safe }}Download for Windows</a>
+          <span class="btn-note">Version {{ release.label }} · {{ release.size_text }} · Windows 10 and 11, 64-bit</span>
+        </div>
+        <a class="textlink" href="/docs/quick-start/">Read the quick start</a>
+      </div>
+    </div>
+    <dl class="glance" aria-label="VisualDeck at a glance">
+      <div><dt>What it is</dt><dd>Cue-based video playback with projection mapping and show control built in.</dd></div>
+      <div><dt>Made for</dt><dd>Theater and dance, live events, museums and installations, VJs.</dd></div>
+      <div><dt>Price</dt><dd>Free for any use, including commercial shows. No account, trial or watermark.</dd></div>
+      <div><dt>Runs on</dt><dd>Windows 10 and 11, 64-bit. One installer with everything included.</dd></div>
+      <div><dt>Takes cues from</dt><dd>Keyboard, a phone browser, OSC, MIDI, MIDI Show Control, timecode, Art-Net and sACN.</dd></div>
+    </dl>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="wrap">
+    <figure>
+      {{ img('main-window', 'VisualDeck main window: a media list on the left, a grid of cues named Preshow, The harbor, Sunset and Storm across four layers in the middle, and a preview of the sunset cue with the title The Keeper on the right, above the GO button.', eager=True, sizes='(min-width: 74rem) 1186px, 100vw') | safe }}
+      <figcaption>The demo show <i>The Keeper</i>. Cues run left to right and layers top to bottom; cue 3, Sunset, is on the output and in the preview.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="wrap" id="features">
+
+  <section class="cue" aria-labelledby="q1">
+    <div class="cue-mark" aria-hidden="true"><span class="q">Q1</span></div>
+    <div class="cue-side"><dl><dt>column</dt><dd>a cue</dd><dt>row</dt><dd>a layer</dd><dt>cell</dt><dd>one clip</dd></dl></div>
+    <div class="cue-body">
+      <div class="split">
+        <div>
+          <h2 id="q1">Build the show as a grid</h2>
+          <p>Each column is a cue and each row is a layer. Drag clips and stills from the media list into the cells, and give each cue the number the stage manager calls (5.5 is fine) and a name you'll recognize at a glance.</p>
+          <p>Lower rows draw over higher ones, so a title, a rain overlay or a logo is just another layer. Notes in Cue Settings appear above the preview while the cue is live.</p>
+          <ul>
+            <li>Transitions for each cue: cut, fade, smooth fade or dip to black.</li>
+            <li>Follows: carry on after a set time, or when the cue's videos end.</li>
+            <li>Undo and redo for every change to the show.</li>
+          </ul>
+        </div>
+        {{ figure('cue-settings', 'The Cue Settings window for cue 3, Sunset: Smooth Fade over 3 seconds, Wait for GO, and a note reading: GO on Anna\'s line, the light will hold tonight.', 'Cue Settings for cue 3: a three-second smooth fade and a note for the operator.') | safe }}
+      </div>
+    </div>
+  </section>
+
+  <section class="cue" aria-labelledby="q2">
+    <div class="cue-mark" aria-hidden="true"><span class="q">Q2</span></div>
+    <div class="cue-side"><dl><dt>GO</dt><dd>Space</dd><dt>BACK</dt><dd>Shift+Space</dd><dt>Blackout</dt><dd>Ctrl+B</dd><dt>Update</dt><dd>Ctrl+U</dd><dt>Lock</dt><dd>Ctrl+L</dd></dl></div>
+    <div class="cue-body">
+      <div class="split flip">
+        <div>
+          <h2 id="q2">Run it with GO</h2>
+          <p>Space is GO, Shift+Space is BACK and Ctrl+B fades to black. Click a cue's header to cut straight to it. The next cue is already loaded, so cuts land on time; mark any other cue Keep Ready and it will too.</p>
+          <p>You can change the cue that's on screen without the audience seeing it. Edits wait in a second preview until you press Update Output. For rehearsals, Start Cue From drops you into the middle of a cue.</p>
+          <p>Before the house opens, Preshow Check lists missing media, a wrong output, a camera that won't open or a remote that isn't listening. Lock Editing then keeps the grid from changing by accident, while GO, BACK and Blackout still work.</p>
+        </div>
+        {{ figure('preshow-check', 'The Preshow Check window reading Ready for the show, with green checks for the output display, all media files found, the sound output, the show saved and editing locked.', 'Preshow Check, half an hour before the house opens.') | safe }}
+      </div>
+    </div>
+  </section>
+
+  <section class="cue" aria-labelledby="q3">
+    <div class="cue-mark" aria-hidden="true"><span class="q">Q3</span></div>
+    <div class="cue-side"><dl><dt>1 px</dt><dd>arrow keys</dd><dt>10 px</dt><dd>Shift+arrow</dd><dt>mesh</dt><dd>2–9 points</dd></dl></div>
+    <div class="cue-body">
+      <div class="measure">
+        <h2 id="q3">Fit the picture to the room</h2>
+        <p>Corner pin each display to square up a projector that hits the screen at an angle, or switch on mesh warp to bend the picture over a curved or uneven surface. Drag a point, or nudge it a pixel at a time with the arrow keys.</p>
+        <p>Edge blending and Span Displays join two or more projectors into one wide picture, side by side or in a grid, and slices let you place each projector's piece by hand. Test patterns (grid, color bars, white) show what's really on the wall, and output presets keep the setup for each venue.</p>
+      </div>
+      {{ figure('corner-pin-output', 'The Corner Pin, Mesh and Edge Blend window with the top corners of display 0 pulled inward, in front of the output itself: a grid test pattern drawn as a keystoned shape across the whole screen.', 'A corner pin on display 0 with the grid test pattern on. The window is in front; the warped output fills the screen behind it.', cls='wide', sizes='(min-width: 74rem) 984px, 100vw') | safe }}
+    </div>
+  </section>
+
+  <section class="cue" aria-labelledby="q4">
+    <div class="cue-mark" aria-hidden="true"><span class="q">Q4</span></div>
+    <div class="cue-side"><p>Blur, Invert, Kaleidoscope, Mirror, Pixelate, RGB Split, Tint, Trails, Wave</p><p>+ your own ISF</p></div>
+    <div class="cue-body">
+      <div class="measure">
+        <h2 id="q4">Layers, looks and effects</h2>
+        <p>Every cell has its own position, size and rotation, opacity, blend mode, color correction and a soft-edged rectangle or ellipse mask. Warp points bend a single picture to fit a piece of scenery.</p>
+        <p>Up to four real-time shader effects can sit on each layer and on each display. Nine come with VisualDeck, and you can add your own in the ISF format. Effects and blend modes need Performance Mode, which draws with the graphics card.</p>
+        <p>Each clip can also play faster or slower, in reverse or back and forth, between in and out points. If a file is too heavy to play smoothly, Make Playback Copy converts it to one that starts at once.</p>
+      </div>
+      {{ figure('position-editor', 'The position editor for the image Night sky.png, showing a kaleidoscope pattern on the canvas and, on the right, the Position and size section and the Effects section with Kaleidoscope, Sides 6.0 and Turn 0.4.', 'The position editor on the Dream cue: a still of the night sky through the Kaleidoscope effect.', cls='wide', sizes='(min-width: 74rem) 984px, 100vw') | safe }}
+    </div>
+  </section>
+
+  <section class="cue" aria-labelledby="q5">
+    <div class="cue-mark" aria-hidden="true"><span class="q">Q5</span></div>
+    <div class="cue-side"><dl><dt>OSC</dt><dd>UDP 7700</dd><dt>Remote</dt><dd>HTTP 7701</dd><dt>Art-Net</dt><dd>UDP 6454</dd><dt>sACN</dt><dd>UDP 5568</dd></dl></div>
+    <div class="cue-body">
+      <div class="split narrow-fig">
+        <div>
+          <h2 id="q5">Take cues from the desk, or from a phone</h2>
+          <p>VisualDeck can follow the rest of the show. Each connection is off until you turn it on in Preferences › Remote control, and OSC and the browser remote accept only this computer until you allow the network.</p>
+          <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col">Connection</th><th scope="col">What it can do</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">OSC</th><td>GO, BACK, Blackout, Update Output, go to a cue by number or name, start a cue partway in, and set effect values. Any OSC sender can use it: QLab, Bitfocus Companion, TouchOSC and others.</td></tr>
+              <tr><th scope="row">Browser remote</th><td>A page for any phone or tablet on the network, with GO, BACK, Blackout and the cue list. The same commands are open to scripts as an HTTP API.</td></tr>
+              <tr><th scope="row">MIDI</th><td>Keys or buttons for GO, BACK, Blackout and Update Output and faders for effect values, set up with MIDI learn. Program Change chooses a cue.</td></tr>
+              <tr><th scope="row">MIDI Show Control</th><td>GO, with or without a cue number, and STOP (a fade to black) from a lighting or sound desk.</td></tr>
+              <tr><th scope="row">Timecode</th><td>MIDI timecode or SMPTE LTC from an audio input: each cue runs when the timecode reaches its time.</td></tr>
+              <tr><th scope="row">Art-Net and sACN</th><td>Choose cues, GO and Blackout from a lighting console, and send the live cue's number back to it.</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p class="small muted">Show-control connections have been tested with messages built to each standard, not yet with every console and device. <a href="/docs/known-issues/">Known issues</a> has the details.</p>
+        </div>
+        {{ figure('browser-remote', 'The browser remote on a phone: cue 5.5 Dream is live and continues to Curtain call in 12.4 seconds; below are the GO, BACK, Blackout and Update Output buttons, the Kaleidoscope effect sliders and the cue list with notes.', 'The browser remote on a phone during a follow.', cls='phone', sizes='20rem') | safe }}
+      </div>
+    </div>
+  </section>
+
+  <section class="cue" aria-labelledby="q6">
+    <div class="cue-mark" aria-hidden="true"><span class="q">Q6</span></div>
+    <div class="cue-side"><dl><dt>autosave</dt><dd>every 2 min</dd><dt>soak test</dt><dd>72 h, 0 render errors</dd></dl></div>
+    <div class="cue-body">
+      <div class="measure">
+        <h2 id="q6">Made to run all night</h2>
+        <p>Output Health shows the frame rate, late frames, every decoder and the sound, and says in plain words what's wrong when something is. VisualDeck also notices a video that has stopped moving. Shows are autosaved every two minutes to a separate file, never over the show, and can be recovered after a crash. Missing media can be relinked, and Collect Show copies a show and all its media into one folder for the venue.</p>
+        <p>For installations, Presentation Mode loops the cues by itself, the schedule runs cues at set times of day, and the computer doesn't go to sleep while VisualDeck is open. Before a long run, the built-in Soak Test plays your show unattended for as long as you choose and reports anything that grew or failed. A VisualDeck 1.0 release candidate ran in that test for 72 hours with no render errors.</p>
+      </div>
+      {{ figure('output-health', 'The Output Health window reading OK, no problems detected, with 60 renders a second, render times, late frames, cut timing, remote-control and audio status, and a table of three videos with their decoders and frame counts.', 'Output Health during the demo show: 60 frames a second and no errors.', cls='wide', sizes='(min-width: 74rem) 984px, 100vw') | safe }}
+    </div>
+  </section>
+
+  <section class="cue" id="specs" aria-labelledby="specs-h">
+    <div class="cue-mark" aria-hidden="true"><span class="q">Spec</span></div>
+    <div class="cue-side"></div>
+    <div class="cue-body">
+      <h2 id="specs-h">Formats and specifications</h2>
+      <div class="table-scroll">
+      <table>
+        <tbody>
+          <tr><th scope="row">Video</th><td>H.264, H.265 (HEVC), ProRes including 4444 with transparency, HAP, HAP Alpha and DXV, in MP4, MOV, AVI and MKV files</td></tr>
+          <tr><th scope="row">Images</th><td>JPG, PNG with transparency, BMP and GIF</td></tr>
+          <tr><th scope="row">Live sources</th><td>USB cameras and capture cards; network streams such as UDP and RTSP, with sound and automatic reconnection</td></tr>
+          <tr><th scope="row">Sound</th><td>From video files, to the output device you choose, with a volume for each video and a delay to line sound up with the projector</td></tr>
+          <tr><th scope="row">Playback</th><td>Speed, reverse, ping-pong, in and out points; Make Playback Copy for hard-to-play files</td></tr>
+          <tr><th scope="row">Outputs</th><td>Any number of displays, with each layer sent to the display you choose; corner pin, mesh warp, edge blending, spans, slices, test patterns and output presets</td></tr>
+          <tr><th scope="row">Effects</th><td>Nine built-in ISF shader effects plus your own; up to four on each layer and on each display</td></tr>
+          <tr><th scope="row">Show control</th><td>OSC, browser remote and HTTP API, MIDI, MIDI Show Control, MIDI timecode, SMPTE LTC, Art-Net and sACN in and out</td></tr>
+          <tr><th scope="row">Render modes</th><td>Performance (GPU, OpenGL 3.3), Balanced and Compatibility (CPU)</td></tr>
+          <tr><th scope="row">System</th><td>Windows 10 or 11, 64-bit. Performance Mode needs a graphics card or integrated GPU with OpenGL 3.3. 8 GB of memory recommended.</td></tr>
+          <tr><th scope="row">License</th><td>Mozilla Public License 2.0. The installer includes Python, FFmpeg (an LGPL build) and every library VisualDeck uses.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="cue" id="fit" aria-labelledby="fit-h">
+    <div class="cue-mark" aria-hidden="true"><span class="q">Fit</span></div>
+    <div class="cue-side"></div>
+    <div class="cue-body">
+      <div class="split">
+        <div>
+          <h2 id="fit-h">Who it's for</h2>
+          <ul class="checks">
+            <li><strong>Theater and dance:</strong> video cues called by the stage manager, with GO, BACK, follows and a locked show file.</li>
+            <li><strong>Concerts, conferences and events:</strong> backgrounds, walk-in loops, sponsor reels and camera feeds across several screens.</li>
+            <li><strong>Museums, exhibitions and installations:</strong> looping playback that runs by itself for days.</li>
+            <li><strong>VJs and live visuals:</strong> layers, blend modes and shader effects you can play from MIDI or OSC.</li>
+          </ul>
+        </div>
+        <div class="notfor">
+          <h3>What it doesn't do (yet)</h3>
+          <ul>
+            <li>Audio-only or lighting cues. VisualDeck plays picture, and the sound that comes with it.</li>
+            <li>NDI, Spout or Syphon, 3D projection mapping, or a timeline.</li>
+            <li>macOS. The release is for Windows; the source also runs on Linux.</li>
+          </ul>
+          <p class="small"><a href="/docs/known-issues/">Known issues and limitations</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="download" id="download" aria-labelledby="dl-h">
+  <div class="wrap">
+    <div class="cue">
+      <div class="cue-mark" aria-hidden="true"><span class="q">Get it</span></div>
+      <div class="cue-side"><p>{{ release.filename }}</p><p>{{ release.size_bytes_text }} bytes</p></div>
+      <div class="cue-body">
+        <div class="split">
+          <div>
+            <h2 id="dl-h">Download VisualDeck {{ release.label }}</h2>
+            <p>One installer with everything in it: no Python, codecs or FFmpeg to install separately. It installs for your Windows user without administrator rights, and adds a Start menu entry, a desktop shortcut and an uninstaller.</p>
+            <p><a class="btn-go" href="{{ release.download_url }}">{{ download_icon | safe }}Download for Windows</a>
+            <span class="btn-note">Windows 10 and 11, 64-bit · {{ release.size_text }}</span></p>
+          </div>
+          <div>
+            <h3>Before you run it</h3>
+            <p>The installer isn't code-signed yet, so Windows SmartScreen may warn about a new app. Choose <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+            <p>To check the file, compare its SHA-256 checksum:</p>
+            <p class="hash">{{ release.sha256 }}</p>
+            <p><a href="/download/">Install steps, requirements and older versions</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <section class="cue" id="faq" aria-labelledby="faq-h">
+    <div class="cue-mark" aria-hidden="true"><span class="q">FAQ</span></div>
+    <div class="cue-side"><p>Something not covered? <a href="{{ github }}/issues">Ask on GitHub.</a></p></div>
+    <div class="cue-body faq">
+      <h2 id="faq-h">Questions</h2>
+      {% for q, a in faq %}
+      <h3>{{ q }}</h3>
+      <p>{{ a | safe }}</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="cue" id="support" aria-labelledby="support-h">
+    <div class="cue-mark" aria-hidden="true"><span class="q">Thanks</span></div>
+    <div class="cue-side"></div>
+    <div class="cue-body">
+      <div class="support">
+        <div>
+          <h2 id="support-h">Support the project</h2>
+          <p>VisualDeck is free. If it runs your shows, a donation helps keep it going, and so does a bug report with the steps to reproduce it.</p>
+          <p>Bitcoin: <code>{{ bitcoin }}</code></p>
+          <p><a href="{{ github }}/issues">Report a problem or suggest a feature on GitHub</a></p>
+        </div>
+        <img class="qr" src="/bitcoin.png" width="160" height="160" alt="QR code for the Bitcoin donation address" loading="lazy">
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

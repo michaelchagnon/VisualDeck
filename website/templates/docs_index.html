@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="wrap page-top">
+  <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Documentation</li></ol></nav>
+  <h1>VisualDeck documentation</h1>
+  <p class="lead">Everything in VisualDeck's built-in help, one topic per page, with the full remote-control reference. Running a show someone else programmed? Start with the <a href="/docs/quick-start/">quick start</a>.</p>
+  <div class="topics">
+    {% for group, items in nav %}
+    <section aria-labelledby="g{{ loop.index }}">
+      <h2 id="g{{ loop.index }}">{{ group }}</h2>
+      <ul>
+        {% for it in items %}<li><a href="{{ it.url }}">{{ it.title }}</a><p>{{ it.description }}</p></li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endfor %}
+  </div>
+  <p class="small muted">The same text is in the app: press F1, or choose Help › VisualDeck Help. It is also on GitHub as <a href="{{ github }}/blob/main/docs/USER_GUIDE.md">USER_GUIDE.md</a>.</p>
+</div>
+{% endblock %}

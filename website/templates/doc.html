@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="wrap docs">
+  <article class="doc" aria-labelledby="doc-title">
+    <nav class="crumbs" aria-label="Breadcrumb"><ol>
+      <li><a href="/">Home</a></li>
+      {% if page.slug %}<li><a href="/docs/">Documentation</a></li>
+      <li aria-current="page">{{ page.short or page.title }}</li>{% else %}<li aria-current="page">Documentation</li>{% endif %}
+    </ol></nav>
+    <h1 id="doc-title">{{ page.h1 or page.title }}</h1>
+    {% if page.slug %}<p class="jump"><a href="#topics">All documentation topics</a></p>{% endif %}
+    <div class="prose">
+{{ page.body | safe }}
+    </div>
+    {% if page.prev or page.next %}
+    <nav class="prevnext" aria-label="Previous and next topic">
+      {% if page.prev %}<a class="prev" href="{{ page.prev.url }}"><span class="k">Previous</span><span class="t">{{ page.prev.title }}</span></a>{% else %}<span></span>{% endif %}
+      {% if page.next %}<a class="next" href="{{ page.next.url }}"><span class="k">Next</span><span class="t">{{ page.next.title }}</span></a>{% endif %}
+    </nav>
+    {% endif %}
+    <p class="updated">{{ page.source_note | safe }}</p>
+  </article>
+  <nav class="docs-nav" id="topics" aria-label="Documentation">
+    {% for group, items in nav %}
+    <h2>{{ group }}</h2>
+    <ul>
+      {% for it in items %}<li><a href="{{ it.url }}"{% if it.url == path %} aria-current="page"{% endif %}>{{ it.title }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+  </nav>
+</div>
+{% endblock %}

@@ -1,0 +1,4 @@
+# Building visualdeck.org (python website/build.py); not needed to run VisualDeck
+-r ../requirements.txt
+Jinja2==3.1.6
+Markdown==3.11
