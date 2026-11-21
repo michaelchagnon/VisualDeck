@@ -30,10 +30,12 @@ def test_self_test_reports_every_check(tmp_path):
     assert set(checks) == {"imports", "decode", "opencv", "effects", "assets", "tk", "sound", "midi_osc", "opengl",
                            "awake", "ffmpeg"}
     assert "distribution is" in checks["ffmpeg"]["detail"]          # LGPL or GPL: release notes need it
-    # MIDI needs the system's MIDI service (none in a Linux container); everything else must pass here.
-    failed = {k: v.get("error") for k, v in checks.items() if not v["ok"] and k != "midi_osc"}
+    # MIDI needs the system's MIDI service (none in a Linux container), OpenGL a GPU (none on CI's
+    # Windows runners, which set VD_SKIP_GL); everything else must pass here.
+    allowed = {"midi_osc"} | ({"opengl"} if os.environ.get("VD_SKIP_GL") == "1" else set())
+    failed = {k: v.get("error") for k, v in checks.items() if not v["ok"] and k not in allowed}
     assert not failed, failed
-    assert r.returncode == (0 if checks["midi_osc"]["ok"] else 1)
+    assert r.returncode == (0 if all(v["ok"] for v in checks.values()) else 1)
     assert data["frozen"] is False and "9 effects" in checks["effects"]["detail"]
 
 

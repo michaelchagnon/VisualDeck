@@ -50,7 +50,10 @@ def test_dialog_runs_and_offers_the_result(fixtures, monkeypatch):
     monkeypatch.setattr(dt, "available_devices", lambda: [])
     monkeypatch.setattr(ci_mod.ControlInterface, "_start_gui", lambda self: None)
     ci = ci_mod.ControlInterface(MediaManager())
-    root = tk.Tk()
+    try:
+        root = tk.Tk()
+    except tk.TclError as e:          # Tk could not start (seen on CI's Windows runner)
+        pytest.skip(f"Tk could not start: {e}")
     root.withdraw()
     try:
         ci.root = root

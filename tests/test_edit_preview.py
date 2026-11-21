@@ -38,7 +38,8 @@ def test_layout_matches_the_engines_preview_compositor(tmp_path, pos):
     half = png(str(tmp_path / "half.png"), (200, 200), (0, 255, 0, 128))
     layers = {0: {"path": red, "order": 0, "position": dict(pos)},
               1: {"path": half, "order": 1, "position": {"x": 0.6, "y": 0.4, "scale_x": 1.5, "scale_y": 1.5}}}
-    eng = rem.BaseRenderEngine(media_manager=None, mode="opengl")      # no monitors: 1920x1080 reference
+    eng = rem.BaseRenderEngine(media_manager=None, mode="opengl")
+    eng.monitors = []          # the 1920x1080 reference, whatever display this machine has
     expected = eng.render_layers_to_image(layers, (480, 270))
     got = pc.compose(layers, (480, 270), (1920, 1080), pc.StillSource())
     assert np.abs(over_black(expected) - over_black(got)).max() == 0
@@ -79,6 +80,7 @@ def test_large_stills_are_reduced_without_changing_the_layout(tmp_path):
     big = png(str(tmp_path / "big.png"), (3000, 1000), (255, 255, 255, 255))
     layers = {0: {"path": big, "order": 0, "position": {"x": 0.5, "y": 0.5, "scale_x": 0.5, "scale_y": 0.5}}}
     eng = rem.BaseRenderEngine(media_manager=None, mode="opengl")
+    eng.monitors = []
     expected = over_black(eng.render_layers_to_image(layers, (480, 270)))
     got = over_black(pc.compose(layers, (480, 270), (1920, 1080), pc.StillSource(max_side=1280)))
     assert (expected != got).any(axis=2).sum() <= 2 * 480   # at most a one-pixel edge difference
